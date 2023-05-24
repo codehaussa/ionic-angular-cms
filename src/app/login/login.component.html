@@ -1,0 +1,12 @@
+<ion-card>
+  <ion-item>
+    <ion-input label="Company Code" label-placement="floating" placeholder="Enter Company Code" [(ngModel)]="loginRequest.Company_code"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Email Address" label-placement="floating" placeholder="Enter Email Address" type="email" [(ngModel)]="loginRequest.Email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input label="Password" label-placement="floating" placeholder="Enter Password" type="password" [(ngModel)]="loginRequest.Password"></ion-input>
+  </ion-item>
+  <ion-button (click)="doLogin()" expand="block" color="success" shape="round">Log In</ion-button>
+</ion-card>

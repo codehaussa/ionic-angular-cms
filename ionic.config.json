@@ -1,0 +1,7 @@
+{
+  "name": "CodeHaus CMS",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
