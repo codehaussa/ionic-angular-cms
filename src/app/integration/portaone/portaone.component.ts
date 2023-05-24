@@ -90,7 +90,7 @@ export class PortaoneComponent  implements OnInit {
        else {
          Swal.fire({
            titleText: 'Error',
-           text: 'Please select the correct method',
+           text: 'Please select the data you want to display...',
            icon: 'error',
            heightAuto: false,
            backdrop: true
