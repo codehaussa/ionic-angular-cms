@@ -22,12 +22,4 @@ export class GetCustomerInfoRequest {
   set Password(value: string) {
     this.password = value;
   }
-
-  private customer_id!: number;
-  get CustomerId() {
-    return this.customer_id;
-  }
-  set CustomerId (value: number) {
-    this.customer_id = value;
-  }
 }
