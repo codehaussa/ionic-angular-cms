@@ -1,16 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {environment} from "../../../environments/environment";
 import {AlertController} from "@ionic/angular";
 import {PortaoneService} from "./repo/portaone-service";
-import {GetAccountListRequest} from "./models/get-account-list-request";
 import { LoadingController } from "@ionic/angular";
-import {AccountListResponse, GetAccountListResponse} from "./models/get-account-list-response";
 import Swal from "sweetalert2";
 import {GetCustomerInfoRequest} from "./models/get-customer-info-request";
-import {CustomerInfo, GetCustomerInfoResponse} from "./models/get-customer-info-response";
+import {GetCustomerInfoResponse} from "./models/get-customer-info-response";
 import { isDevMode } from '@angular/core';
-import {CustomerInfoViewModel} from "./viewmodels/customer-info-view-model";
-
 
 @Component({
   selector: 'app-portaone',
@@ -26,29 +21,14 @@ export class PortaoneComponent  implements OnInit {
   portaOneDestinationPassword = '';
   portaOneMethod: string = '';
 
-  private accountList!: Array<GetAccountListResponse>;
-  set AccountList(value: Array<GetAccountListResponse>) {
-    this.accountList = value;
+  private customer_list!: Array<GetCustomerInfoResponse>;
+  get CustomerList() {
+    return this.customer_list;
   }
-  get AccountList() {
-    return this.accountList;
+  set CustomerList(value: Array<GetCustomerInfoResponse>) {
+    this.customer_list = value;
   }
 
-  private customerInfo!: Array<CustomerInfo>;
-  get CustomerInfo() {
-    return this.customerInfo;
-  }
-  set CustomerInfo(value: Array<CustomerInfo>) {
-    this.customerInfo = value;
-  }
-  // customerViewModelList: CustomerInfoViewModel[] = [];
-  private customerViewModelList!: Array<CustomerInfoViewModel>;
-  get CustomerViewModelList() {
-    return this.customerViewModelList;
-  }
-  set CustomerViewModelList(value: Array<CustomerInfoViewModel>) {
-    this.customerViewModelList = value;
-  }
   constructor(private alertController: AlertController, private portaoneService: PortaoneService, private loadingCtrl: LoadingController) {
   }
 
@@ -63,7 +43,6 @@ export class PortaoneComponent  implements OnInit {
 
   portaOneMethodChange(e:any) {
     this.portaOneMethod = e.detail.value;
-    //this.pushLog('ionChange fired with value: ' + e.detail.value);
   }
 
    async getData() {
@@ -79,7 +58,7 @@ export class PortaoneComponent  implements OnInit {
          getCustomerInfoRequest.Password = this.portaOneSourcePassword;
 
          this.portaoneService.getCustomerInfo(getCustomerInfoRequest).subscribe(data => {
-           console.log(data);
+           this.CustomerList = data;
            loading.dismiss();
          })
 
@@ -178,50 +157,4 @@ export class PortaoneComponent  implements OnInit {
        }
      });
   }
-
-   syncData() {
-
-    let _customerViewModelList: Array<CustomerInfoViewModel>;
-    _customerViewModelList = Array();
-    const customerInfo = this.CustomerInfo;
-    console.log("customerInfo", customerInfo);
-    // const customerInfoEntries = this.CustomerInfo.entries();
-    // customerInfoEntries.
-    // console.log(customerInfoEntries)
-    const accountList = this.AccountList;
-    console.log("accountList", accountList);
-
-    // for (const element of customerInfoEntries) {
-    //   console.log("customerInfo", element);
-    // }
-
-    // for (let i = 0; i < customerInfo.length; i++) {
-    //   const customer_id = customerInfo[i].i_customer;
-    //   console.log("customer_id", customer_id);
-    //   const account_list = accountList.filter(x => x.i_customer == customer_id);
-    //
-    //   let customerInfoViewModel: CustomerInfoViewModel = new CustomerInfoViewModel();
-    //   customerInfoViewModel.customer_info = customerInfo[i];
-    //   customerInfoViewModel.account_list = account_list;
-    //   console.log("customerInfoViewModel", customerInfoViewModel);
-    //   _customerViewModelList.push(customerInfoViewModel);
-    //   //this.customerViewModelList.push(customerInfoViewModel);
-    // }
-
-
-
-
-    // return customerViewModelList;
-    // let newVar = await return customerViewModelList;
-
-    // this.CustomerViewModelList = customerViewModelList;
-
-
-    // console.log("customerViewModelList1", customerViewModelList);
-    // console.log("customerViewModelList2", this.CustomerViewModelList);
-
-
-    //await this.loadingCtrl.dismiss();
-  }
-
 }
