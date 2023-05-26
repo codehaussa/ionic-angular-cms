@@ -51,7 +51,7 @@ export class PortaoneComponent  implements OnInit {
        duration: 0,
      });
      await loading.present().then(() => {
-       if(this.portaOneMethod === 'getAccountList') {
+       // if(this.portaOneMethod === 'getAccountList') {
          let getCustomerInfoRequest: GetCustomerInfoRequest = new GetCustomerInfoRequest();
          getCustomerInfoRequest.HostName = this.portaOneSourceHost;
          getCustomerInfoRequest.Login = this.portaOneSourceLogin;
@@ -59,6 +59,7 @@ export class PortaoneComponent  implements OnInit {
 
          this.portaoneService.getCustomerInfo(getCustomerInfoRequest).subscribe(data => {
            this.CustomerList = data;
+           console.log(this.CustomerList);
            loading.dismiss();
          })
 
@@ -143,18 +144,18 @@ export class PortaoneComponent  implements OnInit {
          //   // this.CustomerInfo = customerInfoList;
          //   this.syncData();
          // });
-       }
-       else {
-         Swal.fire({
-           titleText: 'Error',
-           text: 'Please select the data you want to display...',
-           icon: 'error',
-           heightAuto: false,
-           backdrop: true
-         }).then(() => {
-           loading.dismiss();
-         })
-       }
+       // }
+       // else {
+       //   Swal.fire({
+       //     titleText: 'Error',
+       //     text: 'Please select the data you want to display...',
+       //     icon: 'error',
+       //     heightAuto: false,
+       //     backdrop: true
+       //   }).then(() => {
+       //     loading.dismiss();
+       //   })
+       // }
      });
   }
 }
