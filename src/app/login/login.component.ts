@@ -28,38 +28,76 @@ export class LoginComponent  implements OnInit {
   ngOnInit() {}
 
   async doLogin() {
-    const loading = await this.loadingCtrl.create({
-      message: 'Logging you in...',
-      duration: 0,
-    });
-    await loading.present();
-    this.loginService.loginUser(this.loginRequest).subscribe(data => {
-      if(data) {
-        Swal.fire({
-          titleText: 'Success',
-          text: 'Successfully logged in.',
-          icon: 'success',
-          heightAuto: false,
-          backdrop: true
-        }).then(() => {
-          loading.message = 'Getting features...';
-          this.companyFeaturesRequest.Company_Code = this.loginRequest.Company_code;
-          this.featuresService.getCompanyFeatures(this.companyFeaturesRequest).subscribe((features) => {
-            loading.dismiss();
-            this.router.navigate(['dashboard']);
+    try {
+      const loading = await this.loadingCtrl.create({
+        message: 'Logging you in...',
+        duration: 0,
+        spinner: "crescent"
+      });
+      await loading.present();
+      this.loginService.loginUser(this.loginRequest).subscribe(data => {
+        if (data) {
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-right',
+            iconColor: 'white',
+            customClass: {
+              popup: 'colored-toast'
+            },
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
           });
-        });
-      }
-      else {
-        loading.dismiss();
-        Swal.fire({
-          title: 'Error',
-          text: 'Could not log you in.  Please check your credentials and try again.',
-          icon: 'error',
-          heightAuto: false
-        });
-      }
-    });
+          Toast.fire({
+            icon: "success",
+            iconColor: "white",
+            text: 'Successfully logged in.',
+          }).then(() => {
+            loading.message = 'Getting features...';
+            this.companyFeaturesRequest.Company_Code = this.loginRequest.Company_code;
+            this.featuresService.getCompanyFeatures(this.companyFeaturesRequest).subscribe((features) => {
+              loading.dismiss();
+              this.router.navigate(['dashboard']);
+            });
+          });
+        } else {
+          loading.dismiss();
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-right',
+            iconColor: 'white',
+            customClass: {
+              popup: 'colored-toast'
+            },
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true
+          });
+          Toast.fire({
+            icon: "error",
+            iconColor: "white",
+            text: 'Could not log you in.  Please check your credentials and try again.',
+          });
+        }
+      });
+    }
+    catch (error) {
+      const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-right',
+            iconColor: 'white',
+            customClass: {
+              popup: 'colored-toast'
+            },
+            showConfirmButton: false,
+            timer: 1500,
+            timerProgressBar: true
+          });
+          await Toast.fire({
+            icon: "error",
+            iconColor: "white",
+            text: 'Could not log you in.  Please try again later',
+          });
+    }
   }
-
 }

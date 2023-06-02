@@ -2,6 +2,7 @@ import { Component, OnInit, Renderer2 } from '@angular/core';
 import {environment} from "../environments/environment";
 import { Platform } from '@ionic/angular';
 import { MediaMatcher } from '@angular/cdk/layout';
+import Swal from 'sweetalert2/dist/sweetalert2.js';
 
 @Component({
   selector: 'app-root',
