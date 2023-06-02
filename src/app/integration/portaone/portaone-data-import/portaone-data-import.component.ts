@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {GetCustomerInfoResponse} from "../portaone-customer-data/models/get-customer-info-response";
+import {PortaoneBaseService} from "../services/portaone-base.service";
 
 @Component({
   selector: 'app-portaone-data-import',
@@ -16,14 +17,16 @@ export class PortaoneDataImportComponent  implements OnInit {
     this.customerDataForImport = value;
   }
 
-  constructor(private router: Router) {
-    this.CustomerDataForImport = this.router.getCurrentNavigation()?.extras.queryParams as GetCustomerInfoResponse[];
-    // if (test){
-    //   this.CustomerDataForImport = test;
-    // }
+  constructor(private router: Router, private service: PortaoneBaseService) {
+    this.service.emitter.subscribe(data => {
+      this.CustomerDataForImport = data;
+    });
     console.log(this.CustomerDataForImport);
   }
 
   ngOnInit() {}
 
+  checkChangedData() {
+    console.log(this.CustomerDataForImport);
+  }
 }

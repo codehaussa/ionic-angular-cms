@@ -8,6 +8,7 @@ import {GetCustomerInfoResponse} from "./models/get-customer-info-response";
 import { isDevMode } from '@angular/core';
 import {Router} from "@angular/router";
 import {PortaoneDataImportComponent} from "../portaone-data-import/portaone-data-import.component";
+import {PortaoneBaseService} from "../services/portaone-base.service";
 
 @Component({
   selector: 'app-portaone',
@@ -43,7 +44,7 @@ export class PortaoneComponent  implements OnInit {
     this.showResults = value;
   }
 
-  constructor(private alertController: AlertController, private portaoneService: PortaoneService, private loadingCtrl: LoadingController, private router: Router) {
+  constructor(private alertController: AlertController, private portaoneService: PortaoneService, private loadingCtrl: LoadingController, private router: Router, private service: PortaoneBaseService) {
     this.ShowResults = false;
   }
 
@@ -78,6 +79,7 @@ export class PortaoneComponent  implements OnInit {
 
   async importData() {
     // console.log(this.CustomerList);
-    await this.router.navigate(['integration/portaone/import'], {queryParams: this.CustomerList});
+    // await this.router.navigate(['integration/portaone/import'], {queryParams: this.CustomerList, skipLocationChange: true});
+    await  this.router.navigate(['integration/portaone/import']).then(() => this.service.emitter.emit(this.CustomerList));
   }
 }
