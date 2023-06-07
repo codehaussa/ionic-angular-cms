@@ -1431,3 +1431,7 @@ www/polyfills.0731a7263f6e07b2.js
 www/runtime.8cd43d3c09d97e72.js
 www/styles.0c113a49b8051d00.css
 www/
+.angular/cache/16.0.1/angular-webpack/12352e7f08d1e68b72b850f53ef367e1bbe11c9e/2.pack
+.angular/
+node_modules/
+node_modules/sweetalert2/src/utils/DismissReason.js
