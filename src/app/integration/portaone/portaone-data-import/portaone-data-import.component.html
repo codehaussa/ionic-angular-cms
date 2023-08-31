@@ -1,0 +1,212 @@
+<ion-header>
+  <ion-buttons slot="start">
+    <ion-back-button>Back</ion-back-button>
+  </ion-buttons>
+</ion-header>
+<ion-content class="ion-padding">
+
+  <ion-list *ngFor="let p of CustomerDataForImport; let i = index" style="margin: 0 10px;">
+    <ion-item>
+      <ion-checkbox (ionChange)="checkboxChange($event)" [value]="p.customer_data">Select all data for: {{ p.customer_data.customer_info.name }}</ion-checkbox>
+    </ion-item>
+    <ion-item style="width: 100%">
+      <ion-accordion-group style="width: 100%">
+        <ion-accordion style="width: 100%">
+          <ion-item slot="header">
+            <ion-title>Customer Data: </ion-title>
+          </ion-item>
+          <div slot="content">
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Customer: {{ p.customer_data.customer_info.name }}</ion-card-title>
+                <ion-card-content>
+                  <ion-item>
+                    <ion-input label="Creation Date:" label-placement="floating"
+                      value="{{ p.customer_data.customer_info.creation_date }}" readonly="true"></ion-input>
+                  </ion-item>
+                </ion-card-content>
+              </ion-card-header>
+            </ion-card>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title>Accounts</ion-card-title>
+              </ion-card-header>
+              <ion-card-content>
+                <ion-list *ngFor="let a of p.customer_data.customer_accounts; let j = index">
+                  <ion-item>
+                    <ion-checkbox (ionChange)="checkboxChange($event)" [value]="a.id">{{ a.id }}</ion-checkbox>
+                  </ion-item>
+                  <ion-item>
+                    <ion-accordion-group [multiple]="true" expand="inset" style="width: 100%">
+                      <ion-accordion style="width: 100%">
+                        <ion-item slot="header">
+                          <ion-label>Account Data: </ion-label>
+                        </ion-item>
+                        <div slot="content">
+                          <ion-item>
+                            <ion-input label="Activation Date:" label-placement="floating"
+                              value="{{ a.activation_date }}"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Assigned Addons:" label-placement="floating"
+                              value="{{ a.assigned_addons }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Balance:" label-placement="floating" value="{{ a.balance }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Bill Status:" label-placement="floating" value="{{ a.bill_status }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Billing Model:" label-placement="floating" value="{{ a.billing_model }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Blocked: " label-placement="floating" value="{{ a.blocked }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Credit Limit: " label-placement="floating" value="{{ a.credit_limit }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="E-Commerce Enabled:" label-placement="floating"
+                              value="{{ a.ecommerce_enabled }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Expiration Date: " label-placement="floating"
+                              value="{{ a.expiration_date }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="H323 Password: " label-placement="floating" value="{{ a.h323_password }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Account ID: " label-placement="floating" value="{{ a.i_account }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Account Balance Control Type ID: " label-placement="floating"
+                              value="{{ a.i_account_balance_control_type }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Account Role ID: " label-placement="floating"
+                              value="{{ a.i_account_role }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="ACL ID: " label-placement="floating" value="{{ a.i_acl }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Customer ID: " label-placement="floating" value="{{ a.i_customer }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Language ID: " label-placement="floating" value="{{ a.i_lang }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Product ID: " label-placement="floating" value="{{ a.i_product }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Role ID: " label-placement="floating" value="{{ a.i_role }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Time Zone ID: " label-placement="floating" value="{{ a.i_time_zone }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="ID: " label-placement="floating" value="{{ a.id }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Date Format In: " label-placement="floating"
+                              value="{{ a.in_date_format }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Time Format In: " label-placement="floating"
+                              value="{{ a.in_time_format }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Inactivity Expiry Time: " label-placement="floating"
+                              value="{{ a.inactivity_expire_time }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Included Services: " label-placement="floating"
+                              value="{{ a.included_services }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="ISO 4217: " label-placement="floating" value="{{ a.iso_4217 }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Issue Date: " label-placement="floating" value="{{ a.issue_date }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Life Time: " label-placement="floating" value="{{ a.life_time }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Login: " label-placement="floating" value="{{ a.login }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Opening Balance: " label-placement="floating"
+                              value="{{ a.opening_balance }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Date Format Out: " label-placement="floating"
+                              value="{{ a.out_date_format }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Date Time Format Out: " label-placement="floating"
+                              value="{{ a.out_date_time_format }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Time Format Out: " label-placement="floating"
+                              value="{{ a.out_time_format }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Password: " label-placement="floating" value="{{ a.password }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Product Name: " label-placement="floating" value="{{ a.product_name }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Product Visible Name: " label-placement="floating"
+                              value="{{ a.product_visible_name }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Service Features: " label-placement="floating"
+                              value="{{ a.service_features }}" readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="Service Flags: " label-placement="floating" value="{{ a.service_flags }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                          <ion-item>
+                            <ion-input label="SIP Status: " label-placement="floating" value="{{ a.sip_status }}"
+                              readonly="true"></ion-input>
+                          </ion-item>
+                        </div>
+                      </ion-accordion>
+                    </ion-accordion-group>
+                  </ion-item>
+                </ion-list>
+
+              </ion-card-content>
+            </ion-card>
+          </div>
+        </ion-accordion>
+      </ion-accordion-group>
+    </ion-item>
+  </ion-list>
+  <ion-button (click)="exportDataForImport()" style="margin: 10px; margin-top: 15px;" expand="block">Export Data</ion-button>
+</ion-content>
