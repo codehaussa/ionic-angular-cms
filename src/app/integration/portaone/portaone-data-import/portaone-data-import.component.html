@@ -4,89 +4,10 @@
   </ion-buttons>
 </ion-header>
 <ion-content class="ion-padding">
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Destination Data</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item>
-        <ion-input label="PortaOne Destination Host" label-placement="floating"
-          placeholder="Enter PortaOne Destination Host"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="PortaOne Destination Login" label-placement="floating"
-          placeholder="Enter PortaOne Destination Login"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input label="PortaOne Destination Password" label-placement="floating"
-          placeholder="Enter PortaOne Destination Password" type="password"></ion-input>
-      </ion-item>
-
-    </ion-card-content>
-
-  </ion-card>
-
-  <ion-button fill="solid" expand="block" class="dark" color="primary" style="margin: 10px;">Get Destination Information</ion-button>
-
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Static Data for all Accounts</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-item style="width: 100%">
-        <ion-accordion-group style="width: 100%;">
-          <ion-accordion>
-            <ion-item slot="header">
-              <ion-title>Customer Data</ion-title>
-            </ion-item>
-            <ion-card slot="content">
-              <ion-card-content>
-                <ion-item>
-                  <ion-input label="PortaOne Destination Host" label-placement="floating"
-                    placeholder="Enter PortaOne Destination Host"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="PortaOne Destination Login" label-placement="floating"
-                    placeholder="Enter PortaOne Destination Login"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="PortaOne Destination Password" label-placement="floating"
-                    placeholder="Enter PortaOne Destination Password" type="password"></ion-input>
-                </ion-item>
-              </ion-card-content>
-            </ion-card>
-          </ion-accordion>
-          <ion-accordion>
-            <ion-item slot="header">
-              <ion-title>Account Data</ion-title>
-            </ion-item>
-            <ion-card slot="content">
-              <ion-card-content>
-                <ion-item>
-                  <ion-input label="PortaOne Destination Host" label-placement="floating"
-                    placeholder="Enter PortaOne Destination Host"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="PortaOne Destination Login" label-placement="floating"
-                    placeholder="Enter PortaOne Destination Login"></ion-input>
-                </ion-item>
-                <ion-item>
-                  <ion-input label="PortaOne Destination Password" label-placement="floating"
-                    placeholder="Enter PortaOne Destination Password" type="password"></ion-input>
-                </ion-item>
-              </ion-card-content>
-            </ion-card>
-          </ion-accordion>
-        </ion-accordion-group>
-      </ion-item>
-
-    </ion-card-content>
-
-  </ion-card>
 
   <ion-list *ngFor="let p of CustomerDataForImport; let i = index" style="margin: 0 10px;">
     <ion-item>
-      <ion-checkbox>Select all data for: {{ p.customer_data.customer_info.name }}</ion-checkbox>
+      <ion-checkbox (ionChange)="checkboxChange($event)" [value]="p.customer_data">Select all data for: {{ p.customer_data.customer_info.name }}</ion-checkbox>
     </ion-item>
     <ion-item style="width: 100%">
       <ion-accordion-group style="width: 100%">
@@ -113,7 +34,7 @@
               <ion-card-content>
                 <ion-list *ngFor="let a of p.customer_data.customer_accounts; let j = index">
                   <ion-item>
-                    <ion-checkbox [value]="a.id">{{ a.id }}</ion-checkbox>
+                    <ion-checkbox (ionChange)="checkboxChange($event)" [value]="a.id">{{ a.id }}</ion-checkbox>
                   </ion-item>
                   <ion-item>
                     <ion-accordion-group [multiple]="true" expand="inset" style="width: 100%">
@@ -287,6 +208,5 @@
       </ion-accordion-group>
     </ion-item>
   </ion-list>
-  <ion-button (click)="checkChangedData()" style="margin: 10px; margin-top: 15px;" expand="block">Check
-    Data</ion-button>
+  <ion-button (click)="exportDataForImport()" style="margin: 10px; margin-top: 15px;" expand="block">Export Data</ion-button>
 </ion-content>

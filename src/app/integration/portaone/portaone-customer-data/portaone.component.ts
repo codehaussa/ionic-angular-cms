@@ -50,9 +50,9 @@ export class PortaoneComponent  implements OnInit {
 
   ngOnInit() {
     if(isDevMode()) {
-      this.portaOneSourceHost = 'adminlogin.softphonevip.co.za:8442';
-      this.portaOneSourceLogin = 'Seismic100';
-      this.portaOneSourcePassword = 'G@MERboy91';
+      this.portaOneSourceHost = 'core-adm-trc.avoxi.co.za:8442';//'adminlogin.softphonevip.co.za:8442';
+      this.portaOneSourceLogin = 'CallRyt';//'Seismic100';
+      this.portaOneSourcePassword = 'Phonecall8000!';//'G@MERboy91';
     }
   }
 
