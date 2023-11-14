@@ -14,9 +14,11 @@ import { HttpClientModule} from "@angular/common/http";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatExpansionModule} from "@angular/material/expansion";
 import {PortaoneDataImportComponent} from "./integration/portaone/portaone-data-import/portaone-data-import.component";
+import { InspectionListComponent } from './inspections/inspection-list/inspection-list.component';
+import { CreateInspectionComponent } from './inspections/create-inspection/create-inspection.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent, PortaoneComponent, PortaoneDataImportComponent],
+  declarations: [AppComponent, LoginComponent, DashboardComponent, PortaoneComponent, PortaoneDataImportComponent, InspectionListComponent, CreateInspectionComponent],
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatExpansionModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],

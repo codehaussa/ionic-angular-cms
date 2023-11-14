@@ -4,6 +4,8 @@ import {LoginComponent} from "./login/login.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {PortaoneComponent} from "./integration/portaone/portaone-customer-data/portaone.component";
 import {PortaoneDataImportComponent} from "./integration/portaone/portaone-data-import/portaone-data-import.component";
+import { InspectionListComponent } from './inspections/inspection-list/inspection-list.component';
+import { CreateInspectionComponent } from './inspections/create-inspection/create-inspection.component';
 
 const routes: Routes = [
   {
@@ -18,7 +20,10 @@ const routes: Routes = [
     path: 'dashboard', component: DashboardComponent
   },
   { path: 'integration/portaone', component: PortaoneComponent},
-  { path: 'integration/portaone/import', component: PortaoneDataImportComponent}
+  { path: 'integration/portaone/import', component: PortaoneDataImportComponent},
+  { path: 'inspections/list', component: InspectionListComponent},
+  { path: 'inspections/create', component: CreateInspectionComponent},
+
 ];
 
 @NgModule({

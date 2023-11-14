@@ -14,6 +14,7 @@ import Swal from 'sweetalert2/dist/sweetalert2.js';
 export class AppComponent implements OnInit{
   public appPages = [
     { title: 'Dashboard', url: 'dashboard', icon: 'home' },
+    { title: 'Inspections', url: 'inspections/list', icon: 'home' },
     { title: 'PortaOne Integration', url: 'integration/portaone', icon: 'people' },
     { title: 'Log Out', url: 'login', icon: 'log-out' },
   ];
