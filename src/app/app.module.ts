@@ -16,9 +16,13 @@ import {MatExpansionModule} from "@angular/material/expansion";
 import {PortaoneDataImportComponent} from "./integration/portaone/portaone-data-import/portaone-data-import.component";
 import { InspectionListComponent } from './inspections/inspection-list/inspection-list.component';
 import { CreateInspectionComponent } from './inspections/create-inspection/create-inspection.component';
+import { DisplayNotificationComponent } from './notifications/display-notification/display-notification.component';
+import { SendMessageComponent } from './notifications/send-message/send-message.component';
+import { NotificationsHomeComponent } from './notifications/notifications-home/notifications-home.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, DashboardComponent, PortaoneComponent, PortaoneDataImportComponent, InspectionListComponent, CreateInspectionComponent],
+  declarations: [AppComponent, LoginComponent, DashboardComponent, PortaoneComponent, PortaoneDataImportComponent, InspectionListComponent, 
+      CreateInspectionComponent, NotificationsHomeComponent, DisplayNotificationComponent, SendMessageComponent],
     imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, FormsModule, HttpClientModule, BrowserAnimationsModule, MatExpansionModule],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
